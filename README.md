@@ -24,6 +24,6 @@ Hey there, I'm Ansh Bhatt, and I'm excited to introduce you to the Carbon Footpr
 
 ## Contact
 
-Have questions or want to get in touch? Feel free to reach out to me at contact@anshbhatt.com or connect with me on [LinkedIn](www.linkedin.com/in/ansh-bhatt-py). Your feedback is highly appreciated!
+Have questions or want to get in touch? Feel free to reach out to me at anshbhatt140@gmail.com or connect with me on [LinkedIn](www.linkedin.com/in/ansh-bhatt-py). Your feedback is highly appreciated!
 
 **Note:** This project is created for educational and informational purposes, and the carbon footprint calculations are based on general estimates.
