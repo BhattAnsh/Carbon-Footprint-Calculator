@@ -3,8 +3,7 @@
 Hey there, I'm Ansh Bhatt, and I'm excited to introduce you to the Carbon Footprint Calculator – an innovative web application that empowers you to calculate your carbon footprint, visualize your data, and explore sustainable solutions.
 
 ## Features
-
-- **Calculate:** Easily compute your carbon footprint by providing information about your daily activities, energy usage, and transportation habits.
+- **Calculate:** Easily compute your carbon footprint by providing information about your daily activities, energy usage, and transportation habits. 
 - **Visualize:** View your carbon footprint data through interactive charts and graphs, gaining valuable insights into your environmental impact over time.
 - **Solutions:** Access a curated list of personalized recommendations and eco-friendly solutions to help you reduce your carbon footprint effectively.
 
