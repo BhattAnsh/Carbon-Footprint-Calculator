@@ -1,0 +1,142 @@
+{% extends 'basic.html' %}
+{% load static %}
+<!DOCTYPE html>
+  {% block css %}<link rel="stylesheet" href="{% static 'calculator/loginLogout.css' %}">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+  <title>Landing Page</title>
+</head>
+<body>
+  {% block body %}
+    <div class="ll-container">
+        <form class="login form">
+          {% csrf_token %}
+          <input class="input loginname" type="name" placeholder="Username" required name="username">
+          <input class="input loginpassword" type="password" placeholder="Password" required name="password">
+          <center><button class="button" type="submit" id="login">Login</button></center>
+          <center style="color:#2BAE66">or</center>
+          <center><button class="button" id="signupAdd">Sign Up</button></center>
+        </form>    
+        <form class="signup form">
+          {% csrf_token %}
+          <input class="input signupname" type="text" placeholder="Name" name="Name">
+          <input class="input signupemail" type="email" placeholder="E-Mail I.D." name="email">
+          <input class="input signuppass" type="password" placeholder="Enter password" name="password">
+          <input class="input signupcheckpass" type="password" placeholder="Confirm password" name="confirmPassword">
+          <center><button class="button" type="submit" id = 'signup'>signup</button></center>
+          <p id="passwordError" style="color: red;"></p>
+        </form>
+      
+    </div>
+  {% endblock  %}
+  {% block script %}
+    <script>
+      ScrollReveal().reveal('.about-cf', {delay:300}); 
+    </script>
+    <script>
+        $('#signupAdd').click(function(){
+            $('.signup').addClass('visibleForm')
+            $('.login').removeClass('visibleForm')
+        })
+        $(".signup").submit(function(event) {
+          event.preventDefault(); 
+          var name = $('.signupname').val()
+          var email = $('.signupemail').val()
+          var password = $('.signuppass').val()
+          var confirmPassword = $('.signupcheckpass').val()
+          console.log(name, email, password, confirmPassword)
+          if (password === confirmPassword) {
+            if (String(password).length <8){
+              document.getElementById('passwordError').innerText = 'Password should contain atleast 8 letters';
+            }
+            else{
+              var valueToPass = "Hello, Django!";
+              var csrftoken = getCookie('csrftoken'); // Helper function to retrieve CSRF token from cookie
+              
+              $.ajax({
+                url: "/singinbutton/",
+                type: "POST",
+                data: { 'name': name, 'email': email, 'password': password},
+                headers: {
+                  "X-CSRFToken": csrftoken
+                },
+                success: function(response) {
+                  console.log("Value passed successfully!");
+                },
+                error: function(xhr) {
+                  console.log("Error passing the value: " + xhr.statusText);
+                }
+              });
+
+              function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                  var cookies = document.cookie.split(';');
+                  for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                    }
+                  }
+                }
+                return cookieValue;
+              }
+
+              document.getElementById('passwordError').innerText = '';
+            }
+            // Proceed with form submission or other actions
+          } else {
+            // Passwords do not match
+            document.getElementById('passwordError').innerText = 'Passwords do not match';
+          }
+        });
+        $(".login").submit(function(event) {
+          event.preventDefault(); 
+          var name = $('.loginname').val()
+          var password = $('.loginpassword').val()
+            if (String(password).length <8){
+              document.getElementById('passwordError').innerText = 'Password should contain atleast 8 letters';
+            }
+            else{
+              var valueToPass = "Hello, Django!";
+              var csrftoken = getCookie('csrftoken'); // Helper function to retrieve CSRF token from cookie
+              
+              $.ajax({
+                url: "/login/",
+                type: "POST",
+                data: { 'name': name, 'password': password},
+                headers: {
+                  "X-CSRFToken": csrftoken
+                },
+                success: function(response) {
+                  console.log("Value passed successfully!");
+                },
+                error: function(xhr) {
+                  console.log("Error passing the value: " + xhr.statusText);
+                }
+              });
+
+              function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                  var cookies = document.cookie.split(';');
+                  for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                    }
+                  }
+                }
+                return cookieValue;
+              }
+
+              document.getElementById('passwordError').innerText = '';
+            }
+        });
+    </script>
+  {% endblock%}
+</body>
+</html>
