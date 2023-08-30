@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from json import dumps
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login, logout
 from .models import *
+from json import dumps
+from django.db.models import Q
+from django.contrib import messages
+from django.contrib.auth import authenticate,login, logout
 
 from datetime import date as d
 
@@ -59,28 +61,40 @@ def test(request):
 
 def login_button(request):
     if request.method == 'POST':
-        user_name = request.POST.get('username')
-        pswd = request.POST.get('pswd')
+        user_name = request.POST.get('name')
+        print(user_name)
+        pswd = request.POST.get('password')
         user  = authenticate(username = user_name, password = pswd)
+        print(user)
         if user is not None:
             login(request,user)
+            messages.success(request,"You are successfully logined")
             return redirect('/')
         else:
+            messages.success(request, "You entered wrong credential please check again")
             return redirect('/')
     else:
         return HttpResponse('404 notfound')
 
 def signin_button(request):
     if request.method == 'POST':
-        username = request.POST['name']
+        username = request.POST['Name']
         email = request.POST['email']
         pswd = request.POST['password']
         
         u = User.objects.create_user(username=username, email=email, password=pswd)
         # Rest of your logic
-        login(request,username)
-        return redirect('/')  # Redirect to the login page after successful signup
+        
+        user = authenticate(request, username=username, password=pswd)  # Authenticate the new user
+        if user is not None:
+            login(request, user)  # Log in the authenticated user
+            return redirect('/')  # Redirect to the home page after successful signup and login
+        else:
+            # Handle authentication failure
+            messages.error(request, "Something went wrong with authentication.")
+            return redirect('loginpage')  # Redirect back to the login page
     return render(request, 'loginLogout.html')
+
 
 def logout(request):
     return HttpResponse("this is logoutpage")

@@ -34,7 +34,7 @@
         </div>
       </div>
       {% if user.is_authenticated %}
-        <div>Logined</div>
+        <div class="user_greet_name">Hey, {{user.username}}</div>
       {% else %}
         <div class="lcm-container">
           <form action="{% url 'loginpage' %}" method="post">

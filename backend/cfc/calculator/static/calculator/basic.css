@@ -115,8 +115,11 @@ outline-offset: 1px;
     background-color:#185f95 ;
 
 }
+.user_greet_name{
+    font-size: calc(0.4rem + 1vw);
+}
 .nav-items{
-    font-size: 20px;
+    font-size: calc(0.4rem + 1vw);
     cursor: pointer;
     transition: all 0.3s;
 }
