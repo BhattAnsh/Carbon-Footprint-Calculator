@@ -6,8 +6,9 @@ from json import dumps
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth import authenticate,login, logout
-
+from datetime import date, timedelta
 from datetime import date as d
+from . import allFunctions
 
 # Create your views here.
 def index(request):
@@ -16,7 +17,7 @@ def index(request):
 def calculate(request):
     return render(request, 'calc.html')
 def blog(request):
-    return HttpResponse("this is blog page")
+    return render(request, "blog.html")
 def result(request):
     lpg = request.POST.get("LPG")
     petrol = request.POST.get("Petrol")
@@ -61,7 +62,7 @@ def test(request):
 
 def login_button(request):
     if request.method == 'POST':
-        user_name = request.POST.get('name')
+        user_name = request.POST.get('username')
         print(user_name)
         pswd = request.POST.get('password')
         user  = authenticate(username = user_name, password = pswd)
@@ -96,13 +97,24 @@ def signin_button(request):
     return render(request, 'loginLogout.html')
 
 
-def logout(request):
-    return HttpResponse("this is logoutpage")
+def logout_fuc(request):
+    logout(request)
+    return redirect('/')
 
 def Login_page(request):
-
     return render(request, 'loginLogout.html')
 
+def about(request):
+    return render(request, "aboutus.html")
 
 def loginLogoutPage(request):
     return HttpResponse("this is login logout page")
+
+def userProfile(request):
+    username = request.user
+    user = User.objects.get(username=username)
+    data_instance = allFunctions.last_seven_days_data(user)
+    data, days = data_instance.gettingDaysAndData()
+    ctx = {"days" : days, "data" : data}
+    dataJson = dumps(ctx)
+    return render(request, 'profile.html', {'data':dataJson})

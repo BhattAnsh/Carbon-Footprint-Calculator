@@ -1,0 +1,113 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block css %}<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+<link rel="stylesheet" href="{% static 'calculator/profile.css' %}">
+{% endblock %}
+<title>Calculate</title>
+</head>
+    {% block body %}
+    <body>
+        <div class="first-page">
+            <div class="user-info-container">
+                <div class="user-info">
+                    <div class="name-container">
+                      {{user.username}}
+                    </div>
+                    <div class="user-data">
+                        <center><h2>Your last 7 days carbon emissions.</h2></center>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="button-container">
+                      <a href="/logout/" style="color: white; text-decoration: none;">
+                        <button class="logout-button">
+                            Logout
+                        </button>
+                      </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body> 
+    {% endblock  %}
+    {% block script%}
+    <script>
+        var data = JSON.parse("{{data|escapejs}}");
+        console.log(data)
+        const xValues = data['days'];
+        const yValues = data['data'];
+        let width = window.innerWidth
+        const barColors = ["red", "green","blue","orange","brown"];
+        
+        if (width<420){
+          let axisFont = 10;
+          let titleFont = 15;
+          new Chart("myChart", {
+            type: "bar",
+            data: {
+              labels: xValues,
+              datasets: [{
+                backgroundColor: barColors,
+                data: yValues,
+              }]
+            },
+            options: {
+              scales: {
+                yAxes: [{
+                    ticks: {
+                      fontColor:'black',
+                      fontSize: axisFont,
+                      fontWeight: 'bold'
+                    }
+                }],
+                xAxes:[
+                  {
+                    ticks:{
+                      fontColor:'black',
+                      fontSize: axisFont
+                    }
+                  }
+                ]
+              },
+              legend: {display: false},
+            }
+          });
+        }
+        else{
+          let axisFont = 20;
+          let titleFont = 25;
+          new Chart("myChart", {
+            type: "bar",
+            data: {
+              labels: xValues,
+              datasets: [{
+                backgroundColor: barColors,
+                data: yValues,
+              }]
+            },
+            options: {
+              scales: {
+                yAxes: [{
+                    ticks: {
+                      fontColor:'black',
+                      fontSize: axisFont,
+                      fontWeight: 'bold'
+                    }
+                }],
+                xAxes:[
+                  {
+                    ticks:{
+                      fontColor:'black',
+                      fontSize: axisFont
+                    }
+                  }
+                ]
+              },
+              legend: {display: false},
+            }
+          });
+        }
+    </script>
+    {% endblock %}
+</html>

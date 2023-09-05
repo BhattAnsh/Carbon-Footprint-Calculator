@@ -1,0 +1,105 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block body %}
+<style>
+    /* Styling for the main content */
+
+    .container {
+
+        max-width: 800px;
+        margin: 240px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        color: #234E70;
+    }
+
+    p {
+        line-height: 1.5;
+    }
+
+    /* Styling for the 'Get Involved' section */
+    .get-involved {
+        background-color: #234E70;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .get-involved h2 {
+        font-size: 24px;
+    }
+
+    .get-involved p {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    /* Styling for the contact section */
+    .contact {
+        margin-top: 20px;
+    }
+
+    .contact a {
+        text-decoration: none;
+        color: #234E70;
+        font-weight: bold;
+    }
+
+    /* Styling for buttons */
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #234E70;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #123456;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .container {
+            margin: 100px auto;
+            padding: 10px;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .get-involved {
+            padding: 10px;
+            border-radius: 0;
+        }
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>About Us</h1>
+        <p><strong>Meet the Developer</strong></p>
+        <p>Hello! I'm Ansh Bhatt, the developer behind the website that helps you calculate and reduce your carbon footprint. I'm passionate about environmental sustainability and believe that technology can play a vital role in making the world a greener and cleaner place.</p>
+        <h2>Our Vision</h2>
+        <p><strong>Creating a Greener Future:</strong> Our goal is to empower individuals and businesses to take actionable steps towards reducing their carbon footprint. We believe that by raising awareness and providing practical solutions, we can collectively make a significant impact on the environment.</p>
+        <h2>The Website</h2>
+        <p><strong>Carbon Footprint Calculator:</strong> Our website features a user-friendly carbon footprint calculator. It allows you to input various aspects of your daily life, such as energy usage, transportation habits, and more. Based on your inputs, we provide an estimate of your carbon footprint.</p>
+        <div class="get-involved">
+            <h2>Get Involved</h2>
+            <p><strong>Join Our Community:</strong> We're building a community of like-minded individuals who are committed to sustainability. Join us on social media, participate in discussions, and share your eco-friendly achievements and ideas with others.</p>
+            <p><strong>Feedback:</strong> We value your feedback and suggestions. If you have ideas for improving our website or have topics you'd like us to cover, please reach out to us. Your input helps us make the website even more useful.</p>
+            <p><strong>Spread the Word:</strong> Environmental responsibility is a collective effort. Help us spread the word about our website and the importance of reducing carbon footprints. Together, we can make a real difference.</p>
+        </div>
+
+        <div class="contact">
+            <p>Have questions, suggestions, or just want to say hello? You can reach us at <a href="mailto:anshbhatt140@email.com">anshbhatt140@email.com</a>. We'd love to hear from you!</p>
+        </div>
+    </div>
+</body>
+{% endblock %}

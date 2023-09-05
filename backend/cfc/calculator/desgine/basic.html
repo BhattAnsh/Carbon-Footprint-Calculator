@@ -15,14 +15,14 @@
 <body style= "height:100vh;">
     <nav class="navBar" id="navBar">
       <div class="logo">
-        <h2>CFC</h2>
+        <h2><a href="/">CFC</a></h2>
       </div>
       <div class="nav-items">
         <ul class="nav-items-list">
           <a href="/"><li class="nav-items">Home</li></a>
           <a href="/calculate/"><li class="nav-items">Calculator</li></a>
           <a href="/blog/"><li class="nav-items">Blog</li></a>
-          <li class="nav-items">About Us</li>
+          <a href="/about/"><li class="nav-items">About Us</li></a>
         </ul>
       </div>
       <div class="res-nav-items">
@@ -34,7 +34,7 @@
         </div>
       </div>
       {% if user.is_authenticated %}
-        <div class="user_greet_name">Hey, {{user.username}}</div>
+        <div class="user_greet_name"> <a href="/profile/">Hey, {{user.username}}</a></div>
       {% else %}
         <div class="lcm-container">
           <form action="{% url 'loginpage' %}" method="post">

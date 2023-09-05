@@ -1,0 +1,52 @@
+<style>
+    /* CSS for centering the message and providing a background */
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgba(43,174,102,1); /* Background color */
+    }
+
+    /* CSS for the message box */
+    .message-box {
+        text-align: center;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* CSS for the back button */
+    .back-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #234E70; /* Button background color */
+        color: white; /* Button text color */
+        text-decoration: none; /* Remove underline */
+        border-radius: 5px; /* Rounded corners */
+        transition: background-color 0.3s ease; /* Smooth transition */
+    }
+
+    /* Style the back button on hover */
+    .back-button:hover {
+        background-color: #123456; /* Change background color on hover */
+    }
+
+    /* CSS for responsiveness */
+    @media (max-width: 768px) {
+        .message-box {
+            width: 80%;
+        }
+    }
+</style>
+<body>
+    <div class="message-box">
+        <h1>Sorry, this page is not available for now</h1>
+        <p>We are currently working on it. Please check back later.</p>
+        <a class="back-button" href="/">Back to Home</a>
+    </div>
+</body>
+

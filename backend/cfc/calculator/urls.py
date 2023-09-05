@@ -12,7 +12,9 @@ urlpatterns = [
     path("test/", views.test, name = "test"),
     path("loginpage/", views.Login_page, name='loginpage'),
     path("signin/", views.signin_button, name='signin'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('login/', views.login_button, name='login')
+    path('logout/', views.logout_fuc, name='logout'),
+    path('login/', views.login_button, name='login'),
+    path('profile/', views.userProfile, name='profile'),
+    path('about/', views.about, name='about')
 ]
 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="userprofile.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+    <title>User Profile</title>
+</head>
+<body>
+    <div class="first-page">
+        <div class="user-info-container">
+            <div class="user-info">
+                <div class="profile-pic">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+                        <circle cx="100" cy="100" r="100" fill="#D9D9D9"/>
+                    </svg>
+                </div>
+                <br>
+                <div class="name-container">
+                    NAME HERE
+                </div>
+                <div class="user-data">
+                    <center><h2>Your last 7 days carbon emissions.</h2></center>
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="button-container">
+                    <button class="logout-button">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script>
+const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+const yValues = [55, 49, 44, 24, 15,0];
+const barColors = ["red", "green","blue","orange","brown"];
+
+    let axisFont = 15;
+    let titleFont = 20;
+    new Chart("myChart", {
+    type: "bar",
+    data: {
+        labels: xValues,
+        datasets: [{
+        backgroundColor: barColors,
+        data: yValues,
+        }]
+    },
+    options: {
+        scales: {
+        yAxes: [{
+            ticks: {
+                fontColor:'black',
+                fontSize: axisFont,
+                fontWeight: 'bold'
+            }
+        }],
+        xAxes:[
+            {
+            ticks:{
+                fontColor:'black',
+                fontSize: axisFont
+            }
+            }
+        ]
+        },
+        legend: {display: false},
+    }
+});
+  </script>
+</html>
+
